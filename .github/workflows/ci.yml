@@ -12,8 +12,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      - DATABASE_URL=${DATABASE_URL}
-      - REDIS_URL=${REDIS_URL}
+      - DATABASE_URL: ${secrets.DATABASE_URL}
+      - REDIS_URL: ${secrets.REDIS_URL}
 
     steps:
       - name: Checkout code
