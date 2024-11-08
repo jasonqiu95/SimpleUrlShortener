@@ -19,11 +19,13 @@ cache_conn = None
 db_conn = None
 
 def get_cache_connection():
-    if cache is None:
-        cache = redis.StrictRedis.from_url(REDIS_URL)
-    return 
+    global cache_conn
+    if cache_conn is None:
+        cache_conn = redis.StrictRedis.from_url(REDIS_URL)
+    return  cache_conn
 
 def get_db_connection():
+    global db_conn
     if db_conn is None:
         db_conn = psycopg2.connect(DATABASE_URL)
     return db_conn
@@ -112,6 +114,10 @@ def redirect_to_original(short_url):
         return redirect(original_url)
 
     return jsonify({'error': 'URL not found'}), 404
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify(status="ok"), 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
