@@ -13,6 +13,8 @@ load_dotenv()
 # Environment variables for database and cache connection details
 DATABASE_URL = os.getenv("DATABASE_URL")
 REDIS_URL = os.getenv("REDIS_URL")
+print(REDIS_URL)
+print(DATABASE_URL)
 
 # Connect to Redis and PostgreSQL
 cache_conn = None
