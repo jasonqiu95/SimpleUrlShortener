@@ -16,9 +16,9 @@ echo "Testing URL shortening..."
 RESPONSE=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" \
   -d '{"url": "https://example.com"}' http://localhost:5000/shorten)
 
-echo $RESPONSE
-echo $DATABASE_URL
-echo $REDIS_URL
+echo "$RESPONSE"
+echo "$DATABASE_URL"
+echo "$REDIS_URL"
 # Use awk to split the response into body and status code
 BODY=$(echo "$RESPONSE" | awk 'NR==1{body=$0; next} {status=$0} END{print body}')
 STATUS_CODE=$(echo "$RESPONSE" | awk 'NR==1{body=$0; next} {status=$0} END{print status}')
