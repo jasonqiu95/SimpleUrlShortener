@@ -12,8 +12,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: ${{ vars.DATABASE_URL }}
-      REDIS_URL: ${{ vars.REDIS_URL }}
+      DATABASE_URL: postgresql://jasonqiu:password@postgres:5432/urldb
+      REDIS_URL: redis://redis:6379/0
 
     steps:
       - name: Checkout code
