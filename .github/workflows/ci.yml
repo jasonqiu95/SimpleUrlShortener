@@ -36,6 +36,11 @@ jobs:
       - name: Integration tests
         run: |
           ./run_integration_tests.sh
+      
+      - name: Show Docker Logs
+        if: failure()
+        run: |
+          docker-compose logs  # Display logs from all services for debugging
           
       - name: Tear Down Docker Compose
         run: |
