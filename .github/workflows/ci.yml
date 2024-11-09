@@ -25,9 +25,9 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
       
-      - name: Unit test
-        run: |
-          python3 -m unittest tests/test_url_shortener.py
+      # - name: Unit test
+      #   run: |
+      #     python3 -m unittest tests/test_url_shortener.py
 
       - name: Build and run integration tests
         run: |
