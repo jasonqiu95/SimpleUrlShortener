@@ -13,8 +13,9 @@ load_dotenv()
 # Environment variables for database and cache connection details
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://jasonqiu:password@postgres:5432/urldb")
 REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
-print(REDIS_URL)
-print(DATABASE_URL)
+import sys
+print(f"redis url !!!! {REDIS_URL}", file=sys.stderr)
+print(f"pg url!!!! {DATABASE_URL}", file=sys.stderr)
 
 # Connect to Redis and PostgreSQL
 cache_conn = None
