@@ -11,8 +11,8 @@ app = Flask(__name__)
 load_dotenv()
 
 # Environment variables for database and cache connection details
-DATABASE_URL = os.getenv("DATABASE_URL")
-REDIS_URL = os.getenv("REDIS_URL")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://jasonqiu:password@postgres:5432/urldb")
+REDIS_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 print(REDIS_URL)
 print(DATABASE_URL)
 
