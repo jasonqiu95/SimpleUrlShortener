@@ -29,9 +29,6 @@ services:
 
   web:
     build: .
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - REDIS_URL=${REDIS_URL}
     ports:
       - "5000:5000"
     depends_on:
