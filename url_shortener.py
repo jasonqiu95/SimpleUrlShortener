@@ -25,7 +25,14 @@ db_conn = None
 def get_cache_connection():
     global cache_conn
     if cache_conn is None:
-        cache_conn = redis.StrictRedis.from_url(REDIS_URL)
+        times = 0
+        while times < 5:
+            try:
+                cache_conn = redis.StrictRedis.from_url(REDIS_URL)
+                break
+            except Exception:
+                sleep(2)
+                times += 1
     return  cache_conn
 
 def get_db_connection():
@@ -37,7 +44,7 @@ def get_db_connection():
                 db_conn = psycopg2.connect(DATABASE_URL)
                 break
             except Exception:
-                sleep(3)
+                sleep(2)
                 times += 1
     return db_conn
 
