@@ -6,6 +6,7 @@ import psycopg2
 from psycopg2 import sql
 from flask import Flask, request, jsonify, redirect
 from dotenv import load_dotenv
+from time import sleep
 
 app = Flask(__name__)
 load_dotenv()
@@ -30,7 +31,14 @@ def get_cache_connection():
 def get_db_connection():
     global db_conn
     if db_conn is None:
-        db_conn = psycopg2.connect(DATABASE_URL)
+        times = 0
+        while times < 5:
+            try:
+                db_conn = psycopg2.connect(DATABASE_URL)
+                break
+            except Exception:
+                sleep(3)
+                times += 1
     return db_conn
 
 
